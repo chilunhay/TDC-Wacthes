@@ -28,7 +28,7 @@ import axios from "axios";
 import Payment from "./component/Cart/Payment";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import Notfound from "../../frontend/src/more/Notfound";
+import Notfound from "./more/Notfound";
 import Success from "./component/Cart/Success";
 import ComingSoon from "./more/ComingSoon";
 import Rules from "./more/Rules";

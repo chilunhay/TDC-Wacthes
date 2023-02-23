@@ -64,7 +64,7 @@ export const getOrderDetails = (id) => async (dispatch) => {
     try {
       dispatch({ type: ORDER_DETAILS_REQUEST });
   
-      const { data } = await axios.get(`/api/v2/order/${id}`);
+      const { data } = await axios.get(`https://watches.onrender.com/api/v2/order/${id}`);
   
       dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data.order });
     } catch (error) {
@@ -103,7 +103,7 @@ export const updateOrder = (id, order) => async (dispatch) => {
       },
     };
     const { data } = await axios.put(
-      `/api/v2/admin/order/${id}`,
+      `https://watches.onrender.com/api/v2/admin/order/${id}`,
       order,
       config
     );
@@ -122,7 +122,7 @@ export const deleteOrder = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_ORDER_REQUEST });
 
-    const { data } = await axios.delete(`/api/v2/admin/order/${id}`);
+    const { data } = await axios.delete(`https://watches.onrender.com/api/v2/admin/order/${id}`);
 
     dispatch({ type: DELETE_ORDER_SUCCESS, payload: data.success });
   } catch (error) {
