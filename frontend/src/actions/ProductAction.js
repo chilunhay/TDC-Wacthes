@@ -36,10 +36,10 @@ export const getProduct =
     try {
       dispatch({ type: ALL_PRODUCT_REQUEST });
 
-      let link = `https://watches.onrender.com/api/v2/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
+      let link = `/api/v2/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
 
       if (category) {
-        link = `https://watches.onrender.com/api/v2/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
+        link = `/api/v2/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
       }
 
       const { data } = await axios.get(link);
@@ -61,7 +61,7 @@ export const getProductDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
 
-    const { data } = await axios.get(`https://watches.onrender.com/api/v2/product/${id}`);
+    const { data } = await axios.get(`/api/v2/product/${id}`);
 
     dispatch({
       type: PRODUCT_DETAILS_SUCCESS,
@@ -85,7 +85,7 @@ export const newReview = (reviewData) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `https://watches.onrender.com/api/v2/product/review`,
+      `/api/v2/product/review`,
       reviewData,
       config
     );
@@ -112,7 +112,7 @@ export const createProduct = (productData) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `https://watches.onrender.com/api/v2/product/new`,
+      `/api/v2/product/new`,
       productData,
       config
     );
@@ -153,7 +153,7 @@ export const deleteProduct = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_PRODUCT_REQUEST });
 
-    const { data } = await axios.delete(`https://watches.onrender.com/api/v2/product/${id}`);
+    const { data } = await axios.delete(`/api/v2/product/${id}`);
 
     dispatch({
       type: DELETE_PRODUCT_SUCCESS,
@@ -177,7 +177,7 @@ export const updateProduct = (id, productData) => async (dispatch) => {
     };
 
     const { data } = await axios.put(
-      `https://watches.onrender.com/api/v2/product/${id}`,
+      `/api/v2/product/${id}`,
       productData,
       config
     );
@@ -199,7 +199,7 @@ export const getAllReviews = (id) => async (dispatch) => {
   try {
     dispatch({ type: ALL_REVIEW_REQUEST });
 
-    const { data } = await axios.get(`https://watches.onrender.com/api/v2/reviews?id=${id}`);
+    const { data } = await axios.get(`/api/v2/reviews?id=${id}`);
 
     dispatch({
       type: ALL_REVIEW_SUCCESS,
@@ -219,7 +219,7 @@ export const deleteReviews = (reviewId, productId) => async (dispatch) => {
     dispatch({ type: DELETE_REVIEW_REQUEST });
 
     const { data } = await axios.delete(
-      `https://watches.onrender.com/api/v2/reviews?id=${reviewId}&productId=${productId}`
+      `/api/v2/reviews?id=${reviewId}&productId=${productId}`
     );
 
     dispatch({
