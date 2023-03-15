@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Rating } from '@material-ui/lab';
+import { Rating } from "@material-ui/lab";
 
 const ProductCard = ({ product }) => {
   const options = {
@@ -31,11 +31,11 @@ const ProductCard = ({ product }) => {
           <div className="offerPriceBox">
             <h1
               className="discountPrice"
-              style={{
-                paddingLeft: "2.5vmax",
-                fontSize: ".9vmax",
-                paddingBottom: "0",
-              }}
+              // style={{
+              //   paddingLeft: "2.5vmax",
+              //   fontSize: ".9vmax",
+              //   paddingBottom: "0",
+              // }}
             >
               {product.offerPrice > 0 ? `$${product.offerPrice}` : ""}
             </h1>
