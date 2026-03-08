@@ -8,11 +8,19 @@ const cloudinary = require("cloudinary");
 
 // Register user
 exports.createUser = catchAsyncErrors(async (req, res, next) => {
-  const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
-    folder: "avatars",
-    width: 150,
-    crop: "scale",
-  });
+  let myCloud;
+  if (req.body.avatar) {
+    try {
+      myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+        folder: "avatars",
+        width: 150,
+        crop: "scale",
+      });
+    } catch (error) {
+      console.error("Cloudinary upload Error:", error);
+      return next(new ErrorHandler("Image upload failed, please try again", 400));
+    }
+  }
 
   const { name, email, password } = req.body;
 
@@ -21,8 +29,8 @@ exports.createUser = catchAsyncErrors(async (req, res, next) => {
     email,
     password,
     avatar: {
-      public_id: myCloud.public_id,
-      url: myCloud.secure_url,
+      public_id: myCloud ? myCloud.public_id : "avatars/default_profile_xyz123",
+      url: myCloud ? myCloud.secure_url : "https://res.cloudinary.com/chilunhay/image/upload/v1651137603/samples/logo1_kd3fz7.jpg",
     },
   });
 
