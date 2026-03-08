@@ -28,7 +28,7 @@ const Header = () => {
         <div className="logo pxy__10">
           <Link to="/">
             <img
-              src="https://res.cloudinary.com/tdc-watches/image/upload/v1651137603/samples/logo1_kd3fz7.jpg"
+              src="https://res.cloudinary.com/chilunhay/image/upload/v1651137603/6b1edc106786d2dd3c2c34b3eafa105c.jpg"
               alt=""
               className="logo"
               style={{
