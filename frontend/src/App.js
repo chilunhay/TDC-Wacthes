@@ -46,6 +46,8 @@ import AllUsers from "./component/Admin/AllUsers";
 import UpdateUser from "./component/Admin/UpdateUser";
 import AllReviews from "./component/Admin/AllReviews";
 
+axios.defaults.withCredentials = true;
+
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
 

@@ -1,6 +1,12 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const ErrorHandler = require("./middleware/error");
+
+app.use(cors({
+  origin: true, // Cho phép mọi origin gửi request có credentials (hoặc cấu hình cụ thể url frontend)
+  credentials: true,
+}));
 const cookieParser = require("cookie-parser");
 const fileUpload = require("express-fileupload");
 const bodyParser = require("body-parser");
