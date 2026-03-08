@@ -3,6 +3,12 @@ const connectDatabase = require("../backend/db/Database");
 const cloudinary = require("cloudinary");
 const path = require("path");
 
+// Chỉ khởi tạo khi chạy trên môi trường serverless
+console.log("Serverless environment check:", {
+  hasDbUrl: !!process.env.DB_URL,
+  nodeEnv: process.env.NODE_ENV,
+  cloudinaryName: process.env.CLOUDINARY_NAME
+});
 // Load ENV for serverless
 require("dotenv").config({
   path: path.resolve(__dirname, "../backend/config/.env"),
