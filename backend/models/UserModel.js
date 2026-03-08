@@ -55,8 +55,12 @@ userSchema.pre("save", async function(next){
 
 // jwt token
 userSchema.methods.getJwtToken = function(){
-    return jwt.sign({id:this._id}, process.env.JWT_SECRET_KEY, {
-        expiresIn: process.env.JWT_EXPIRES
+    const secret = process.env.JWT_SECRET_KEY || "TEMPORARY_SECRET_PLEASE_SET_IN_VERCEL_DASHBOARD";
+    if (!process.env.JWT_SECRET_KEY) {
+        console.warn("WARNING: JWT_SECRET_KEY is not defined in environment variables!");
+    }
+    return jwt.sign({id:this._id}, secret, {
+        expiresIn: process.env.JWT_EXPIRES || "5d"
     });
 };
 
