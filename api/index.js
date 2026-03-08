@@ -1,6 +1,12 @@
 const app = require("../backend/app");
 const connectDatabase = require("../backend/db/Database");
 const cloudinary = require("cloudinary");
+const path = require("path");
+
+// Load ENV for serverless
+require("dotenv").config({
+  path: path.resolve(__dirname, "../backend/config/.env"),
+});
 
 // Biến lưu trạng thái kết nối để tái sử dụng
 let isConnected = false;
