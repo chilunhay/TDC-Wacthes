@@ -10,7 +10,7 @@ const Footer = () => {
       {/* Footer 1st part */}
       <div className="footer1st">
         <img
-          src="https://res.cloudinary.com/chilunhay/image/upload/6b1edc106786d2dd3c2c34b3eafa105c"
+          src="https://res.cloudinary.com/chilunhay/image/upload/v1651137603/samples/logo1_kd3fz7.jpg"
           style={{ cursor: "pointer" }}
           alt="logo"
         />
