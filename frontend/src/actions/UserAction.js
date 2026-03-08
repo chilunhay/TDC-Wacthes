@@ -90,7 +90,7 @@ export const loadUser = () => async (dispatch) => {
 // Log out user
 export const logout = () => async (dispatch) => {
   try {
-    await axios.get(`/api/v2/logout`);
+    await axios.post(`/api/v2/logout`);
 
     dispatch({ type: LOGOUT_SUCCESS });
   } catch (error) {

@@ -77,7 +77,10 @@ exports.logoutUser = catchAsyncErrors(async (req, res, next) => {
     httpOnly: true,
     secure: true,
     sameSite: "none",
+    path: "/",
   });
+
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 
   res.status(200).json({
     success: true,
