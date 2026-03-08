@@ -295,3 +295,29 @@ exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
     message: "User deleted successfully",
   });
 });
+
+// Contact Support
+exports.contactSupport = catchAsyncErrors(async (req, res, next) => {
+  const { user_name, user_email, user_subject, user_message } = req.body;
+
+  if (!user_name || !user_email || !user_subject || !user_message) {
+    return next(new ErrorHandler("Please fill all the fields", 400));
+  }
+
+  const message = `Name: ${user_name} \nEmail: ${user_email} \nSubject: ${user_subject} \n\nMessage: \n${user_message}`;
+
+  try {
+    await sendMail({
+      email: process.env.SMPT_MAIL,
+      subject: `Support Report: ${user_subject}`,
+      message,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "Your report has been sent successfully",
+    });
+  } catch (error) {
+    return next(new ErrorHandler(error.message, 500));
+  }
+});

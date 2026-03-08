@@ -1,34 +1,50 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import MetaData from "./MetaData";
 import "./Support.css";
-import emailjs from "@emailjs/browser";
+import axios from "axios";
 import BottomTab from "./BottomTab";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Support = ({ history }) => {
-  const [done, setDone] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const formRef = useRef(null);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    emailjs
-      .sendForm(
-        "service_qb3xd3k",
-        "template_i19x4kg",
-        formRef.current,
-        "ZpUeIRWsJh5UnnWeS"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-          setDone(true);
+    setLoading(true);
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
         },
-        (error) => {
-          console.log(error.text);
-        }
+      };
+      const { data } = await axios.post(
+        "/api/v2/support",
+        {
+          user_name: name,
+          user_email: email,
+          user_subject: subject,
+          user_message: message,
+        },
+        config
       );
+      if (data.success) {
+        toast.success(data.message);
+        setName("");
+        setEmail("");
+        setSubject("");
+        setMessage("");
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -66,7 +82,6 @@ const Support = ({ history }) => {
               margin: "auto",
               padding: "20px 0",
             }}
-            ref={formRef}
             onSubmit={handleSubmit}
           >
             <input
@@ -82,6 +97,8 @@ const Support = ({ history }) => {
                 fontSize: "1.2vmax",
                 height: "40px",
               }}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               name="user_name"
             />
             <input
@@ -97,6 +114,8 @@ const Support = ({ history }) => {
                 fontSize: "1.2vmax",
                 height: "40px",
               }}
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
               name="user_subject"
             />
             <input
@@ -113,6 +132,8 @@ const Support = ({ history }) => {
                 fontSize: "1.2vmax",
                 height: "40px",
               }}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <textarea
               cols="30"
@@ -127,6 +148,8 @@ const Support = ({ history }) => {
                 margin: "10px 0",
                 fontSize: "1.2vmax",
               }}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
               name="user_message"
             ></textarea>
             <button
@@ -140,13 +163,10 @@ const Support = ({ history }) => {
                 color: "#fff",
                 fontSize: "1.2vmax",
               }}
+              disabled={loading}
             >
-              Submit
+              {loading ? "Sending..." : "Submit"}
             </button>
-            {done &&
-              toast.success(
-                "Thanks for your report we will reply it in very soon..."
-              )}
           </form>
           <div className="animation"></div>
         </div>
