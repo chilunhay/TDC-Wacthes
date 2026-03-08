@@ -14,7 +14,7 @@ app.use(fileUpload());
 // config
 if (process.env.NODE_ENV !== "PRODUCTION") {
   require("dotenv").config({
-    path: "backend/config/.env",
+    path: path.resolve(__dirname, "config/.env"),
   });
 }
 
