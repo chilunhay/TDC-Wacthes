@@ -15,7 +15,8 @@ exports.isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
     );
   }
 
-  const decodedData = jwt.verify(token, process.env.JWT_SECRET_KEY);
+  const secret = process.env.JWT_SECRET_KEY || "TEMPORARY_SECRET_PLEASE_SET_IN_VERCEL_DASHBOARD";
+  const decodedData = jwt.verify(token, secret);
 
   req.user = await User.findById(decodedData.id);
 
