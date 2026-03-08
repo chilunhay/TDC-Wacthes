@@ -82,14 +82,14 @@ const Footer = () => {
           <div className="App__Image flex pointer">
             <Link to="/creator">
               <img
-                src="http://wp.alithemes.com/html/nest/demo/assets/imgs/theme/app-store.jpg"
+                src="https://wp.alithemes.com/html/nest/demo/assets/imgs/theme/app-store.jpg"
                 style={{ width: "150px", margin: "10px" }}
                 alt="AppStore"
               />
             </Link>
             <Link to="/creator">
               <img
-                src="http://wp.alithemes.com/html/nest/demo/assets/imgs/theme/google-play.jpg"
+                src="https://wp.alithemes.com/html/nest/demo/assets/imgs/theme/google-play.jpg"
                 style={{ width: "150px", margin: "10px" }}
                 alt="Google"
               />
