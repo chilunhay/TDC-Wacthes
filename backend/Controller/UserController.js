@@ -24,17 +24,24 @@ exports.createUser = catchAsyncErrors(async (req, res, next) => {
 
   const { name, email, password } = req.body;
 
-  const user = await User.create({
-    name,
-    email,
-    password,
-    avatar: {
-      public_id: myCloud ? myCloud.public_id : "avatars/default_profile_xyz123",
-      url: myCloud ? myCloud.secure_url : "https://res.cloudinary.com/chilunhay/image/upload/v1651137603/samples/logo1_kd3fz7.jpg",
-    },
-  });
+  try {
+    const user = await User.create({
+      name,
+      email,
+      password,
+      avatar: {
+        public_id: myCloud ? myCloud.public_id : "avatars/default_profile_xyz123",
+        url: myCloud ? myCloud.secure_url : "https://res.cloudinary.com/chilunhay/image/upload/v1651137603/samples/logo1_kd3fz7.jpg",
+      },
+    });
 
-  sendToken(user, 200, res);
+    sendToken(user, 200, res);
+  } catch (error) {
+    if (myCloud && myCloud.public_id) {
+      await cloudinary.v2.uploader.destroy(myCloud.public_id);
+    }
+    return next(error);
+  }
 });
 
 // Login User
@@ -198,7 +205,9 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
 
     const imageId = user.avatar.public_id;
 
-    await cloudinary.v2.uploader.destroy(imageId);
+    if (imageId !== "avatars/default_profile_xyz123") {
+      await cloudinary.v2.uploader.destroy(imageId);
+    }
 
     const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
       folder: "avatars",
@@ -269,12 +278,14 @@ exports.updateUserRole = catchAsyncErrors(async (req, res, next) => {
 exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.params.id);
 
-  const imageId = user.avatar.public_id;
-
-  await cloudinary.v2.uploader.destroy(imageId);
-
   if (!user) {
     return next(new ErrorHandler("User is not found with this id", 400));
+  }
+
+  const imageId = user.avatar.public_id;
+
+  if (imageId !== "avatars/default_profile_xyz123") {
+    await cloudinary.v2.uploader.destroy(imageId);
   }
 
   await user.remove();

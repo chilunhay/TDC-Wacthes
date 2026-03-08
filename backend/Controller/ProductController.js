@@ -30,12 +30,20 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
   req.body.images = imagesLinks;
   req.body.user = req.user.id;
 
-  const product = await Product.create(req.body);
+  try {
+    const product = await Product.create(req.body);
 
-  res.status(201).json({
-    success: true,
-    product,
-  });
+    res.status(201).json({
+      success: true,
+      product,
+    });
+  } catch (error) {
+    // Delete images from cloudinary if DB creation fails
+    for (let i = 0; i < imagesLinks.length; i++) {
+      await cloudinary.v2.uploader.destroy(imagesLinks[i].public_id);
+    }
+    return next(error);
+  }
 });
 
 // Get All Product
