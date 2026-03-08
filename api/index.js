@@ -12,17 +12,25 @@ require("dotenv").config({
 let isConnected = false;
 
 const startServerless = async (req, res) => {
-  if (!isConnected) {
-    await connectDatabase();
-    isConnected = true;
-    
-    cloudinary.config({
-      cloud_name: process.env.CLOUDINARY_NAME,
-      api_key: process.env.CLOUDINARY_API_KEY,
-      api_secret: process.env.CLOUDINARY_API_SECRET,
+  try {
+    if (!isConnected) {
+      await connectDatabase();
+      isConnected = true;
+      
+      cloudinary.config({
+        cloud_name: process.env.CLOUDINARY_NAME,
+        api_key: process.env.CLOUDINARY_API_KEY,
+        api_secret: process.env.CLOUDINARY_API_SECRET,
+      });
+    }
+    return app(req, res);
+  } catch (error) {
+    console.error("Serverless Start Error:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Serverless initialization failed: " + error.message,
     });
   }
-  return app(req, res);
 };
 
 module.exports = startServerless;

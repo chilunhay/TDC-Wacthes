@@ -69,7 +69,7 @@ export const register = (userData) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: REGISTER_USER_FAIL,
-      payload: error.response.data.message,
+      payload: error.response ? error.response.data.message : error.message,
     });
   }
 };
@@ -115,7 +115,7 @@ export const updateProfile = (userData) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: UPDATE_PROFILE_FAIL,
-      payload: error.response.data.message,
+      payload: error.response ? error.response.data.message : error.message,
     });
   }
 };
@@ -133,7 +133,7 @@ export const updatePassword = (password) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: UPDATE_PASSWORD_FAIL,
-      payload: error.response.data.message,
+      payload: error.response ? error.response.data.message : error.message,
     });
   }
 };
@@ -163,7 +163,7 @@ export const forgotPassword = (email) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: FORGOT_PASSWORD_FAIL,
-      payload: error.response.data.message,
+      payload: error.response ? error.response.data.message : error.message,
     });
   }
 };
@@ -185,7 +185,7 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: RESET_PASSWORD_FAIL,
-      payload: error.response.data.message,
+      payload: error.response ? error.response.data.message : error.message,
     });
   }
 };
@@ -201,7 +201,7 @@ export const deleteUser = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: DELETE_USER_FAIL,
-      payload: error.response.data.message,
+      payload: error.response ? error.response.data.message : error.message,
     });
   }
 };
@@ -236,7 +236,7 @@ export function updateUser(id, userData) {
     } catch (error) {
       dispatch({
         type: UPDATE_USER_FAIL,
-        payload: error.response.data.message,
+        payload: error.response ? error.response.data.message : error.message,
       });
     }
   };
