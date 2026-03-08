@@ -16,7 +16,7 @@ const Sidebar = () => {
     <div className="sidebar">
       <Link to="/">
         <img
-          src="https://res.cloudinary.com/tdc-watches/image/upload/v1651137603/samples/logo1_kd3fz7.jpg"
+          src="https://res.cloudinary.com/chilunhay/image/upload/v1651137603/samples/logo1_kd3fz7.jpg"
           alt="TDC Watches"
         />
       </Link>

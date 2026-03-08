@@ -76,6 +76,17 @@ const Dashboard = () => {
           <Sidebar />
 
           <div className="dashboardContainer">
+            <div className="dashboardLogo">
+                 <img
+                  src="https://res.cloudinary.com/chilunhay/image/upload/v1651137603/samples/logo1_kd3fz7.jpg"
+                  alt="Logo"
+                  style={{
+                    width: "150px",
+                    height: "100px",
+                    objectFit: "contain",
+                  }}
+                />
+            </div>
             <Typography component="h1">Dashboard</Typography>
 
             <div className="dashboardSummary">
