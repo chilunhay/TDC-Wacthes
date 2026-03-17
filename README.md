@@ -28,24 +28,21 @@ Data Persistence: Utilized Local Storage to ensure the shopping cart remains int
 Type Safety: 100% TypeScript coverage to prevent runtime errors and improve developer experience.
 
 🔧 Installation & Setup
-1. Clone the repository
-bash
+1. Clone the repository:
+
 git clone https://github.com/chilunhay/TDC-Wacthes.git
 
 cd TDC-Watches
 
-3. Install dependencies
-bash
+2. Install dependencies:
 
 npm install
 
-4. Run the development server
-bash
+3. Run the development server:
 
 npm run dev
 
-5. Build for production
-bash
+4. Build for production:
 
 npm run build
 
