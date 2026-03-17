@@ -1,43 +1,57 @@
-## File structure
+⌚ TDC Watches – Modern E-commerce Storefront
+A sleek, fully responsive e-commerce application for premium timepieces, built with React, TypeScript, and Tailwind CSS. This project focuses on high-quality UI/UX and seamless client-side state management.
 
-#### `Frontend` - Holds the client application
+🚀 Live Demo
+🔗 [https://tdc-wacthes.vercel.app](https://tdc-wacthes.vercel.app/)]
+<img width="1920" height="2992" alt="image" src="https://github.com/user-attachments/assets/9e136a90-f9ae-4356-a646-654ce9b9fb76" />
 
-- #### `public` - This holds all of our static files
-- #### `src`
-  - #### `assets` - This folder holds assets such as images, docs, and fonts
-  - #### `components` - This folder holds all of the different components that will make up our views
-  - #### `views` - These represent a unique page on the website i.e. Home or About. These are still normal react components.
-  - #### `App.js` - This is what renders all of our browser routes and different views
-  - #### `index.js` - This is what renders the react app by rendering App.js, should not change
-- #### `package.json` - Defines npm behaviors and packages for the client
 
-#### `Backend` - Holds the server application
+🌟 Key Features
+Product Catalog: Dynamic watch collection with real-time category filtering and search functionality.
+Advanced Shopping Cart: Full CRUD operations (Add, Update, Remove) for cart items with persistent state.
+Product Details: In-depth view for each timepiece, including high-resolution images and specifications.
+Responsive Design: Pixel-perfect UI optimized for Desktop, Tablet, and Mobile using Tailwind CSS.
+Global State Management: Centralized data flow using React Context API and useReducer for consistent UI updates.
+Client-side Routing: Fast and smooth page transitions powered by React Router Dom.
 
-- #### `config` - This holds our configuration files, like mongoDB uri
-- #### `controllers` - These hold all of the callback functions that each route will call
-- #### `models` - This holds all of our data models
-- #### `routes` - This holds all of our HTTP to URL path associations for each unique url
-- #### `middleware` - This holds all of our server tests that we have defined
-- #### `server.js` - Defines npm behaviors and packages for the client
+🛠️ Tech Stack
+Frontend: React.js, TypeScript.
+Styling: Tailwind CSS, Lucide React (Icons).
+State Management: React Context API, Local Storage (Persistence).
+Routing: React Router Dom.
+Build Tool: Vite (for ultra-fast development).
 
-#### `package.json` - Defines npm behaviors like the scripts defined in the next section of the README
+🏗️ Technical Highlights
+Component-Based Architecture: Modular and reusable UI components to ensure scalability and maintainability.
+Custom Hooks: Implemented custom hooks to decouple business logic from UI components.
+Data Persistence: Utilized Local Storage to ensure the shopping cart remains intact after page refreshes.
+Type Safety: 100% TypeScript coverage to prevent runtime errors and improve developer experience.
 
-#### `.gitignore` - Tells git which files to ignore
+🔧 Installation & Setup
+1. Clone the repository
+bash
+git clone https://github.com/chilunhay/TDC-Wacthes.git
 
-#### `README` - This file!
+cd TDC-Watches
 
-## Available Scripts
+3. Install dependencies
+bash
 
-In the project directory, you can run:
+npm install
 
-### `npm run dev`
+4. Run the development server
+bash
 
-Runs just the server in development mode.<br>
-Sever running in [http://localhost:4000](http://localhost:4000)
+npm run dev
 
-Then, go to the frontend folder and run:
+5. Build for production
+bash
 
-### `npm start`
+npm run build
 
-Runs just the client app in development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view the client in the browser.
+👤 Author
+Tat Duc Chi
+
+GitHub: @chilunhay
+
+Portfolio: 3d-portfolio-nine-eta.vercel.app
